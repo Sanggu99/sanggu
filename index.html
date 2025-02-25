@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Interactive Art by Mongsang</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  </head>
+  <body>
+    <script>
+      let arcSize = 200;
+      let alpha = 0;
+
+      function setup() {
+        createCanvas(800, 800);
+      }
+
+      function draw() {
+        background(238); // 배경색
+
+        let constrainedMouseX = constrain(mouseX, 10, width);
+        let constrainedMouseY = constrain(mouseY, 10, height);
+
+        let yStep = constrainedMouseY;
+        arcSize = constrainedMouseX;
+
+        noFill();
+        stroke(20);
+
+        // 위쪽 아크 그리기
+        for (let y = arcSize / 2; y < height - arcSize / 2; y += yStep) {
+          let sw = map(sin(radians(y + alpha)), -1, 1, 2, yStep);
+          strokeWeight(sw);
+
+          for (let x1 = arcSize / 2; x1 < width + arcSize; x1 += arcSize) {
+            arc(x1, y, arcSize / 2, arcSize / 2, 0, PI);
+          }
+        }
+
+        // 아래쪽 아크 그리기
+        for (let y = arcSize / 2; y < height - arcSize / 2; y += yStep) {
+          let sw = map(sin(radians(y - alpha)), -1, 1, 2, yStep);
+          strokeWeight(sw);
+
+          for (let x2 = 0; x2 < width + arcSize; x2 += arcSize) {
+            arc(x2, y, arcSize / 2, arcSize / 2, PI, TWO_PI);
+          }
+        }
+
+        alpha++; // 애니메이션 효과
+      }
+    </script>
+  </body>
+</html>
