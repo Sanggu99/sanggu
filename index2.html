@@ -1,0 +1,53 @@
+// 🎨 Vera Molnar 스타일 애니메이션 (Dynamic Pattern)
+
+color[] colArray = {
+  color(255, 255, 255),  // White
+  color(200, 50, 50),    // Red
+  color(55, 188, 25),    // Green
+  color(15, 35, 250),    // Blue
+  color(125, 235, 250),  // Light Blue
+  color(240, 245, 15),   // Yellow
+  color(160, 60, 235)    // Purple
+};
+
+int grid = 100;  // 그리드 간격
+int margin = 150;  // 여백 설정
+float d = grid * 0.99;  // 사각형 크기 비율 설정
+int frameInterval = 5; // 몇 프레임마다 새로 갱신할지 결정
+
+void setup() {
+  size(800, 800);
+  frameRate(30);  // 초당 30프레임 설정
+}
+
+void draw() {
+  if (frameCount % frameInterval == 0) {  // 일정 프레임 간격마다 새 패턴 생성
+    background(15, 20, 30);  // 어두운 배경색
+    noFill();  // 내부 채우기 없음
+    stroke(255);  // 기본 선 색상 설정
+
+    for (int i = margin; i < width - margin; i += grid) {
+      for (int j = margin; j < height - margin; j += grid) {
+        int colArrayNum = int(random(7));  // 랜덤 색상 선택
+        stroke(colArray[colArrayNum]);  // 선 색상 설정
+        strokeWeight(3);  // 선 두께 설정
+
+        for (int num = 0; num < 2; num++) {  // 한 셀에 여러 개의 랜덤 사각형 생성
+          float x1 = random(d);
+          float y1 = random(d);
+          float x2 = random(d);
+          float y2 = random(d);
+          float x3 = random(d);
+          float y3 = random(d);
+          float x4 = random(d);
+          float y4 = random(d);
+
+          pushMatrix();
+          translate(i, j);  // 셀 위치로 이동
+          quad(x1, y1, x2, y2, x3, y3, x4, y4);  // 랜덤한 사각형 그리기
+          popMatrix();
+        }
+      }
+    }
+  }
+}
