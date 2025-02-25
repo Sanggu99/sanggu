@@ -1,54 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Random Curves</title>
-  <!-- p5.js 라이브러리 로드 -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-</head>
-<body>
-  <script>
-    int curveCount = 0;  // 현재까지 그려진 곡선의 개수
-    int maxCurves = 500; // 총 곡선 개수
+```javascript
+int curveCount = 0;  // 현재까지 그려진 곡선의 개수
+int maxCurves = 500; // 총 곡선 개수
 
-    function setup() {
-      createCanvas(800, 800);  // 캔버스 크기 설정
-      background(255); // 흰색 배경
-      frameRate(60);   // 초당 60프레임 설정 (1초에 최대 60개의 곡선)
-    }
+void setup() {
+  size(800, 800);  // 캔버스 크기 설정
+  background(255); // 흰색 배경
+  frameRate(60);   // 초당 60프레임 설정 (1초에 최대 60개의 곡선)
+}
 
-    function draw() {
-      if (curveCount < maxCurves) {
-        drawRandomCurve();
-        curveCount++;
-      } else {
-        noLoop(); // 모든 곡선을 그린 후 중지
-      }
-    }
+void draw() {
+  if (curveCount < maxCurves) {
+    drawRandomCurve();
+    curveCount++;
+  } else {
+    noLoop(); // 모든 곡선을 그린 후 중지
+  }
+}
 
-    function drawRandomCurve() {
-      // 랜덤 색상 생성
-      stroke(random(100, 255), random(50, 200), random(150, 255), random(50, 150)); 
-      strokeWeight(random(1, 5)); // 랜덤 두께 설정
-      
-      noFill();
-      
-      // 곡선의 시작점과 끝점 설정
-      let x1 = random(width);
-      let y1 = random(height);
-      let x2 = random(width);
-      let y2 = random(height);
-      
-      // 제어점 설정 (베지어 곡선의 형태를 만듦)
-      let cx1 = random(width);
-      let cy1 = random(height);
-      let cx2 = random(width);
-      let cy2 = random(height);
-      
-      // 베지어 곡선 그리기
-      bezier(x1, y1, cx1, cy1, cx2, cy2, x2, y2);
-    }
-  </script>
-</body>
-</html>
+void drawRandomCurve() {
+  // 랜덤 색상 생성
+  stroke(random(100, 255), random(50, 200), random(150, 255), random(50, 150)); 
+  strokeWeight(random(1, 5)); // 랜덤 두께 설정
+  
+  noFill();
+  
+  // 곡선의 시작점과 끝점 설정
+  float x1 = random(width);
+  float y1 = random(height);
+  float x2 = random(width);
+  float y2 = random(height);
+  
+  // 제어점 설정 (베지어 곡선의 형태를 만듦)
+  float cx1 = random(width);
+  float cy1 = random(height);
+  float cx2 = random(width);
+  float cy2 = random(height);
+  
+  // 베지어 곡선 그리기
+  bezier(x1, y1, cx1, cy1, cx2, cy2, x2, y2);
+}
