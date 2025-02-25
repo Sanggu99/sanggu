@@ -16,6 +16,10 @@
     }
 
     function draw() {
+      // 화면을 클릭하면 새로운 패턴을 그리기 위해 초기화
+    }
+
+    function mousePressed() {
       background(245);  // 배경 초기화
 
       let numElements = 34;  // 생성할 요소(점, 선, 면) 수
@@ -31,12 +35,6 @@
           drawPlane();  // 30% 확률로 면 생성
         }
       }
-
-     
-    }
-
-    function keyPressed() {
-      redraw();  // 키 입력 시 새로운 패턴 생성
     }
 
     // ⚫ 점 생성 함수
