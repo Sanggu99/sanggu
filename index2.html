@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vera Molnar Style Animation</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
   </head>
@@ -16,7 +17,7 @@
       let frameInterval = 5; // 몇 프레임마다 새로 갱신할지 결정
 
       function setup() {
-        createCanvas(800, 800);
+        createCanvas(windowWidth, windowHeight);  // 화면 크기에 맞게 캔버스 크기 설정
         frameRate(30);  // 초당 30프레임 설정
 
         // 🎨 색상 배열을 setup() 내부에서 초기화
